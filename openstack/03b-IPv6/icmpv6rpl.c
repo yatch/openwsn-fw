@@ -713,8 +713,8 @@ void sendDIO(void) {
         (
             icmpv6rpl_getPreferredParentEui64(&addressToWrite) == FALSE ||
             (
-                icmpv6rpl_getPreferredParentEui64(&addressToWrite) &&
-                schedule_hasManagedTxCellToNeighbor(&addressToWrite) == FALSE
+                schedule_hasManagedTxCellToNeighbor(&addressToWrite) == FALSE ||
+                icmpv6rpl_daoSent() == FALSE
             )
         )
     ){
@@ -1049,4 +1049,3 @@ bool icmpv6rpl_daoSent(void) {
     }
     return icmpv6rpl_vars.daoSent;
 }
-
