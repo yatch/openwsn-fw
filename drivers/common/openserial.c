@@ -173,6 +173,13 @@ owerror_t openserial_printError(
     // toggle error LED
     leds_error_toggle();
 
+    if (calling_component == COMPONENT_IEEE802154E &&
+        (error_code == ERR_LARGE_TIMECORRECTION ||
+         error_code == ERR_INVALIDPACKETFROMRADIO)) {
+      /* suppress these logs */
+      return E_SUCCESS;
+    }
+
     return openserial_printInfoErrorCritical(
         SERFRAME_MOTE2PC_ERROR,
         calling_component,
@@ -1111,6 +1118,3 @@ uint8_t isr_openserial_rx(void) {
 
     return returnVal;
 }
-
-
-
