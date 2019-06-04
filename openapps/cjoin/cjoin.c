@@ -32,6 +32,8 @@ static const uint8_t jrcHostName[] = "6tisch.arpa";
 
 static const uint8_t proxyScheme[] = "coap";
 
+extern ieee154e_vars_t    ieee154e_vars;
+
 //=========================== variables =======================================
 
 cjoin_vars_t cjoin_vars;
@@ -356,8 +358,7 @@ void cjoin_setIsJoined(bool newValue) {
     if (newValue == TRUE) {
         // log the info
         openserial_printInfo(COMPONENT_CJOIN, ERR_JOINED,
-                             (errorparameter_t)0,
-                             (errorparameter_t)0);
+                             (errorparameter_t)ieee154e_vars.asn.bytes2and3,
+                             (errorparameter_t)ieee154e_vars.asn.bytes0and1);
     }
 }
-
