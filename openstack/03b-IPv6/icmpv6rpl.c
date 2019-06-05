@@ -22,6 +22,7 @@
 //=========================== variables =======================================
 
 icmpv6rpl_vars_t             icmpv6rpl_vars;
+extern ieee154e_vars_t    ieee154e_vars;
 
 //=========================== prototypes ======================================
 
@@ -528,7 +529,10 @@ void icmpv6rpl_updateMyDAGrankAndParentSelection(void) {
 \param newParent. the new parent address
 */
 void icmpv6rpl_updateNexthopAddress(open_addr_t* newParent){
-
+    openserial_printInfo(COMPONENT_ICMPv6RPL,
+                         ERR_RPL_PARENT_CHANGE,
+                         (errorparameter_t)ieee154e_vars.asn.bytes2and3,
+                         (errorparameter_t)ieee154e_vars.asn.bytes0and1);
     openqueue_updateNextHopPayload(newParent);
 }
 
