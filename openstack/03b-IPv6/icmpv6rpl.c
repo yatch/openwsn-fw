@@ -508,6 +508,8 @@ void icmpv6rpl_updateMyDAGrankAndParentSelection(void) {
                 icmpv6rpl_updateNexthopAddress(&newParent);
             }
         }
+        // send a DAO immediately to speed up the network formation
+        sendDAO();
     } else {
         // restore routing table as we found it on entry
         icmpv6rpl_vars.myDAGrank   = previousDAGrank;
