@@ -239,6 +239,9 @@ void icmpv6rpl_sendDone(OpenQueueEntry_t* msg, owerror_t error) {
    // I'm not busy sending DIO/DAO anymore
    if (packetfunctions_isBroadcastMulticast(&(msg->l2_nextORpreviousHop))){
         icmpv6rpl_vars.busySendingDIO = FALSE;
+        openserial_printInfo(COMPONENT_ICMPv6RPL, ERR_RPL_DIO_SENT,
+                             (errorparameter_t)ieee154e_vars.asn.bytes2and3,
+                             (errorparameter_t)ieee154e_vars.asn.bytes0and1);
    } else {
         icmpv6rpl_vars.busySendingDAO = FALSE;
    }

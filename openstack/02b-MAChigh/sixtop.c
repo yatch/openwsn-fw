@@ -31,6 +31,7 @@
 //=========================== variables =======================================
 
 sixtop_vars_t sixtop_vars;
+extern ieee154e_vars_t    ieee154e_vars;
 
 //=========================== prototypes ======================================
 
@@ -456,6 +457,10 @@ void task_sixtopNotifSendDone(void) {
 
                 // not busy sending EB anymore
                 sixtop_vars.busySendingEB = FALSE;
+
+                openserial_printInfo(COMPONENT_SIXTOP, ERR_TSCH_EB_SENT,
+                                     (errorparameter_t)ieee154e_vars.asn.bytes2and3,
+                                     (errorparameter_t)ieee154e_vars.asn.bytes0and1);
             } else {
                 // this is a KA
 

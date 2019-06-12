@@ -261,6 +261,8 @@ enum {
    ERR_UNSUPPORTED_FORMAT              = 0x46, // the received packet format is not supported (code location {0})
    ERR_UNSUPPORTED_METADATA            = 0x47, // the metadata type is not suppored
    ERR_MAXRETRIES_REACHED              = 0x48, // maxretries reached (counter: {0})
+   ERR_TSCH_EB_SENT                    = 0x4e,
+   ERR_RPL_DIO_SENT                    = 0x4f,
    ERR_RPL_PARENT_CHANGE               = 0x50,
 };
 
