@@ -3,6 +3,7 @@
 #include "eui64.h"
 #include "packetfunctions.h"
 #include "openserial.h"
+#include "openrandom.h"
 #include "neighbors.h"
 #include "schedule.h"
 #include "IEEE802154_security.h"
@@ -260,6 +261,8 @@ void idmanager_triggerAboutRoot(void) {
    keyValue = &input_buffer[10];
    IEEE802154_security_setBeaconKey(keyIndex, keyValue);
    IEEE802154_security_setDataKey(keyIndex, keyValue);
+
+   openrandom_init();
 
    return;
 }
