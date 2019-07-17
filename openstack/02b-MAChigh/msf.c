@@ -6,6 +6,7 @@
 #include "schedule.h"
 #include "openapps.h"
 #include "openrandom.h"
+#include "openserial.h"
 #include "idmanager.h"
 #include "icmpv6rpl.h"
 #include "IEEE802154E.h"
@@ -16,6 +17,7 @@
 //=========================== variables =======================================
 
 msf_vars_t msf_vars;
+extern ieee154e_vars_t    ieee154e_vars;
 
 //=========================== prototypes ======================================
 
@@ -184,6 +186,13 @@ void msf_timer_waitretry_cb(opentimers_id_t id){
 
 void msf_timer_housekeeping_cb(opentimers_id_t id){
     PORT_TIMER_WIDTH newDuration;
+
+#if 0
+    openserial_printInfo(COMPONENT_SIXTOP,
+                         ERR_MSF_HOUSEKEEPING,
+                         (errorparameter_t)ieee154e_vars.asn.bytes2and3,
+                         (errorparameter_t)ieee154e_vars.asn.bytes0and1);
+#endif
 
     // update the timer period
     newDuration = openrandom_getRandomizePeriod(msf_vars.housekeepingPeriod, msf_vars.housekeepingPeriod),
